@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Post Card</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: arial;
+      }
+
+      .blog-post-card {
+        background-color: white;
+        border-radius: 50px;
+        width: 300px;
+        text-align: center;
+        margin: 50px auto;
+      }
+
+      .post-img {
+        border-bottom: 5px solid rgba(151, 151, 151, 0.69);
+        width: 100%;
+      }
+
+      .post-content {
+        padding: 30px;
+      }
+
+      .post-title,
+      .post-excerpt {
+        color: rgb(66, 66, 66);
+      }
+
+      .read-more {
+        color: white;
+        background-color: rgb(86, 85, 85);
+        margin: 20px;
+        padding: 9px;
+        border-radius: 10px;
+        display: inline-block;
+      }
+      .read-more:hover {
+        background-color: rgb(124, 124, 124);
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.135);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blog-post-card">
+      <img
+        class="post-img"
+        src="https://cdn.freecodecamp.org/curriculum/labs/cover-photo.jpg"
+        alt="An open and powered-on laptop, angled to highlight its left side, with both hands of a white person in a gray coat typing on the keyboard."
+      />
+      <div class="post-content">
+        <h2 class="post-title">Learn Web Development in 2024</h2>
+        <p class="post-excerpt">
+          Stay ahead of the curve with the latest trends in web development.
+          Discover what's new and exciting in 2024
+        </p>
+        <a href="https://freecodecamp.org" class="read-more">Read More</a>
+      </div>
+    </div>
+  </body>
+</html>
