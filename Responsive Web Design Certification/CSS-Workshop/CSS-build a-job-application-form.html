@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+body{
+  background-color: rgb(229, 229, 229);
+  font-family: arial, sans-serif;
+}
+.center{
+  text-align: center;
+  margin-top: 100px;
+}
+.container{
+  background-color: white;
+  padding: 50px 40px;
+  max-width: 500px;
+  margin: 30px auto;
+  border-radius: 15px;
+}
+
+ select, fieldset, textarea, input:not(input[type="radio"]){
+  box-sizing: border-box;
+  display: block;
+  width: 90%;
+  margin: 10px 0 20px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+
+h2{
+  font-size: 1.2rem;
+}
+
+
+input:focus,
+textarea:focus{
+  border: 3px solid rgb(71, 0, 237) !important; 
+  outline: none;
+}
+
+input:invalid,
+select:invalid,
+textarea:invalid {
+  border: 1px solid red;
+}
+
+input:valid, 
+select:valid, 
+textarea:valid {
+  border: 1px solid  green;
+}
+
+.radio-group input[type="radio"]{
+  appearance: none;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid rgb(9, 148, 217);
+  width: 15px;
+  height: 15px;
+  vertical-align: bottom;
+  transition: all 0.3s ease-in;
+}
+
+.radio-group input[type="radio"]:checked{
+  background-color: rgb(209, 209, 255);
+  border: 4px solid rgb(0, 140, 255);
+  box-shadow: 0px 0px 8px 2px rgba(0, 140, 255, 0.608);
+  
+}
+
+
+.radio-group input[type="radio"]:checked + label{
+  color: rgba(0, 109, 139, 0.827);
+  
+}
+
+input:first-of-type{
+  background-color: rgba(227, 255, 192, 0.594);
+}
+
+button{
+  display: block;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: rgb(43, 0, 217); 
+  border-radius: 20px;
+  font-size: 1.1rem;
+  border: none;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+button:hover{
+  background-color: rgba(0, 255, 68, 0.964);
+  color: rgb(0, 0, 0);
+}
+
+    </style>
+</head>
+
+<body>
+    <h1 class="center">Job Application Form</h1>
+    <div class="container">
+
+        <form>
+
+            <label for="name">Full Name: </label>
+            <input id="name" name="name" type="text" placeholder="Mariana Lourenço" required />
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="email" placeholder="email@example.com" required />
+            <label for="position">Position: </label>
+            <select id="position" required>
+                <option default value="">Select a position</option>
+                <option value="0">Intern</option>
+                <option value="1">Junior (JR) Developer</option>
+                <option value="2">Software Engineer</option>
+                <option value="3">Senior (SR) Developer</option>
+            </select>
+            <fieldset class="radio-group">
+                <legend>Availability</legend>
+                <input id="full-time" name="availability" type="radio" />
+                <label for="full-time">Full-Time </label>
+                <input id="part-time" name="availability" type="radio" />
+                <label for="part-time">Part-Time </label>
+            </fieldset>
+            <h2>Why do you want this job?</h2>
+            <textarea required rows="8" cols="50" id="message" placeholder="Write your motivation"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
