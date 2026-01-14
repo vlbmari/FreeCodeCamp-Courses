@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colored Boxes</title>
+    <link rel="stylesheets" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: arial, sans-serif;
+            text-align: center;
+
+        }
+
+        .color-box p {
+            margin: 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.834);
+        }
+
+        .color-box {
+            width: 150px;
+            height: 150px;
+            margin: 25px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.409);
+            border: 3px double rgba(255, 255, 255, 0.834);
+            border-radius: 15px 0;
+        }
+
+        .color1 {
+            background-color: #fd5e5e;
+        }
+
+        .color2 {
+            background-color: rgb(255, 90, 160);
+        }
+
+        .color3 {
+            background-color: aqua;
+        }
+
+        .color4 {
+            background-color: hsl(160, 100%, 43%);
+        }
+
+        .color5 {
+            background: radial-gradient(circle at bottom left, rgb(0, 118, 202) 10%, aqua 40%, hsl(160, 80%, 50%) 50%, #fd5e5e 85%, rgb(251, 14, 113) 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Colored Boxes</h1>
+    <div class="color-grid">
+        <div class="color-box color1">
+            <p>HEX</p>
+        </div>
+        <div class="color-box color2">
+            <p>RGB</p>
+        </div>
+        <div class="color-box color3">
+            <p>PREDEFINED (WORD)</p>
+        </div>
+        <div class="color-box color4">
+            <p>HSL</p>
+        </div>
+        <div class="color-box color5">
+            <p>RADIAL GRADIENT</p>
+        </div>
+    </div>
+</body>
+
+</html>
