@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: rgba(217, 217, 217, 0.532);
+            font-family: Tahoma;
+        }
+
+        h2 {
+            text-align: center;
+            color: rgb(66, 39, 125);
+        }
+
+        .form-container {
+            background-color: rgba(109, 109, 212, 0.69);
+            border-radius: 30px;
+            padding: 10px 10px 30px;
+            width: 400px;
+            max-width: 500px;
+            margin: 100px auto;
+            border: 4px double rgba(39, 0, 137, 0.834);
+        }
+
+        label {
+            margin: 20px 0;
+            color: white;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 7px 0;
+            border-radius: 10px;
+            border: none;
+            margin: 8px 0 15px;
+            max-width: 400px;
+
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid blue;
+            box-shadow: 0 0 100px 10px black;
+        }
+
+        button {
+            background-color: rgb(66, 39, 125);
+            font-size: 1.2rem;
+            color: rgb(193, 193, 193);
+            border-radius: 10px;
+            padding: 5px;
+            display: block;
+            margin-top: 20px;
+            transition: background-color 0.2s ease;
+
+        }
+
+        button:hover {
+            background-color: rgba(26, 0, 128, 0.423);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <form>
+            <h2>Contact Us</h2>
+            <label for="name">Name: <input id="name" name="name" type="text" required /></label>
+            <label for="email">Email: <input id="email" name="email" type="email" required /></label>
+            <label for="message">Message:
+                <textarea id="message" name="message" required>
+                </textarea>
+                <button type="submit">Submit</button>
+            </label>
+        </form>
+    </div>
+</body>
+
+</html>
