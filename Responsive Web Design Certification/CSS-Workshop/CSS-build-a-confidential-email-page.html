@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidential Email</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: rgb(254, 251, 240);
+
+        }
+
+        #email {
+            padding: 50px;
+            margin: 50px auto;
+            width: 500px;
+            border: 2px solid rgb(91, 56, 0);
+            box-sizing: border-box;
+            background-color: rgb(221, 209, 182);
+            box-shadow: inset 0 0 7px 1px black;
+
+        }
+
+        #confidential {
+            transform: rotate(-20deg) scale(1.3);
+            margin: 10px 0;
+        }
+
+        #top-secret {
+            transform: rotate(15deg) scale(1.1);
+            margin-top: 10px;
+
+        }
+
+        #confidential,
+        #top-secret {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-left: 170px;
+            border: 5px solid red;
+            color: red;
+            font-weight: bold;
+            font-size: 1.2rem
+        }
+
+        .blurred {
+            filter: blur(3px);
+        }
+    </style>
+</head>
+
+<body>
+    <main id="email">
+        <div id="confidential">CONFIDENTIAL</div>
+        <p>Dear Agent <span class="blurred">S'more</span></p>
+        <p>We have an emergency. The secret formula for our <span class="blurred">Mega Marshmallow</span> has been
+            compromised. This formula is what makes our marshmallows the fluffiest and most delicious.</p>
+        <p>We suspect that <span class="blurred">Professor Puff</span> is behind this. He has taken the formula to his
+            hidden laboratory. Your mission is to infiltrate the lab and secure the formula before it's too late.</p>
+        <p>Be sure to keep the lab's location confidential. Any leak of this information could jeopardize the entire
+            operation.</p>
+        <div id="top-secret">TOP SECRET</div>
+
+    </main>
+</body>
+
+</html>
