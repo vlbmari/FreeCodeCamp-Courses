@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Selection Feature Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: rgba(5, 22, 51, 0.423);
+            color: rgba(18, 31, 50, 0.731);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.0rem;
+        }
+
+        .feature-card-container {
+            background-color: rgba(40, 35, 49, 0.08);
+            margin: 0px auto;
+            border-radius: 40px;
+            max-width: 1600px;
+            min-width: 400px;
+            box-shadow: inset 0 0 8px 1px rgba(22, 12, 54, 0.45);
+        }
+
+        .feature-card:last-of-type {
+            margin-bottom: 100px;
+        }
+
+        .feature-card {
+            font-family: Tahoma;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            background-color: white;
+            margin: 100px 20px 0px;
+            width: 350px;
+            height: 100px;
+            padding: 40px 0 25px;
+            text-align: center;
+            font-size: 1.7em;
+            color: rgb(1, 128, 170);
+            border: 2px solid rgb(0, 128, 183);
+            border-radius: 30px;
+            transition: 0.3s ease;
+
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 0 0px 5px rgba(59, 255, 177, 0.459);
+        }
+
+        p {
+            font-size: 0.7em;
+            color: rgb(32, 170, 46);
+        }
+
+        input[type="checkbox"] {
+            position: absolute;
+            appearance: none;
+            display: inline;
+            border: 2px solid rgb(0, 128, 183);
+            width: 25px;
+            height: 25px;
+            border-radius: 6px;
+            color: white;
+            vertical-align: middle;
+            top: 15px;
+            right: 15px;
+
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: rgb(0, 173, 37);
+            border: 3px double rgb(251, 251, 251);
+
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: '✓';
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Feature Selection</h1>
+    <div class="feature-card-container">
+        <label for="feature1" class="feature-card">Cloud Storage
+            <input id="feature1" name="features" value="cloud-storage" type="checkbox">
+            <p>100 Gigabyte secure storage</p>
+        </label>
+
+        <label for="feature2" class="feature-card">Dedicated Support
+            <input id="feature2" name="features" value="dedicated-support" type="checkbox">
+            <p>24/7 customer help</p>
+        </label>
+
+        <label for="feature3" class="feature-card">Advanced Analytics
+            <input id="feature3" name="features" value="advanced-analytics" type="checkbox">
+            <p>Insights & reports</p>
+        </label>
+
+        <label for="feature4" class="feature-card">Custom User Themes
+            <input id="feature4" name="features" value="Custom-user-themes" type="checkbox">
+            <p>Personalized dashboard design</p>
+        </label>
+
+        <label for="feature5" class="feature-card">Multi-User Collab
+            <input id="feature5" name="features" value="multi-user-collab" type="checkbox">
+            <p>Team access and sharing</p>
+        </label>
+
+        <label for="feature6" class="feature-card">API Access
+            <input id="feature6" name="features" value="api-acess" type="checkbox">
+            <p>Integrate with your custom built tools</p>
+        </label>
+    </div>
+</body>
+
+</html>
