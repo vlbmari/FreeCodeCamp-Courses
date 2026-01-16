@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pricing Plans Layout Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        hr {
+            max-width: 35%;
+            border: 1px solid rgba(31, 27, 253, 0.472);
+        }
+
+        body {
+            font-family: Helvetica;
+            text-align: center;
+            margin: 100px auto;
+            background-color: rgb(248, 248, 248);
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        .pricing-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 5px 4px 6px 2px rgb(172, 155, 228);
+            max-width: 850px;
+            padding: 40px;
+            background-color: white;
+            margin: auto;
+
+        }
+
+        .pricing-card p {
+            font-family: roboto;
+            color: rgb(85, 84, 84);
+
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 0 0 200px;
+            border: 2px solid black;
+            margin: 20px 10px;
+            padding: 20px 0px;
+            max-width: 250px;
+            min-height: 370px;
+            text-align: center;
+            border-radius: 10px;
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+
+        .pricing-card h2,
+        .pricing-card p {
+            font-size: 1.7em;
+            margin: 0;
+        }
+
+        .content-plan li {
+            text-align: left;
+            font-size: 0.9em;
+            padding: 3px 10px;
+        }
+
+        .content-plan li::marker {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .yes::marker {
+            content: "✓";
+            color: rgb(31, 27, 253);
+        }
+
+        .no::marker {
+            content: '✗';
+            color: rgb(253, 46, 27);
+        }
+
+        .basic-plan {
+            background-color: rgb(249, 251, 216);
+            order: 0;
+        }
+
+        .pro-plan {
+            background-color: rgb(216, 236, 251);
+            order: 1;
+            flex-grow: 2;
+        }
+
+        .premium-plan {
+            background-color: rgb(216, 251, 233);
+            order: 2
+        }
+
+        .choose-plan {
+            background-color: rgb(31, 27, 253);
+            border: 4px double rgb(171, 186, 255);
+            border-radius: 3px;
+            padding: 5px 5px;
+            font-size: 1em;
+            color: rgb(255, 255, 255);
+            max-width: 60%;
+            transition: 0.3s ease;
+            margin: auto auto 0px auto;
+            cursor: pointer;
+
+        }
+
+        .choose-plan:hover {
+            background-color: rgb(37, 113, 255);
+            color: rgb(255, 255, 255);
+            box-shadow: 0 0 0 2px rgb(225, 231, 255);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pricing Plans</h1>
+    <div class="pricing-container">
+        <div class="pricing-card basic-plan">
+            <h2>Basic</h2>
+            <p>$9/month</p>
+            <hr>
+            <ul class="content-plan">
+                <li class="yes">Access to our core features</li>
+                <li class="yes">Email support</li>
+                <li class="no">Advanced analytics</li>
+                <li class="no">Custom integrations</li>
+                <li class="no">Priority support</li>
+            </ul>
+            <button class="choose-plan" type="button">Choose Plan</button>
+        </div>
+        <div class="pricing-card pro-plan">
+            <h2>Pro</h2>
+            <p>$19/month</p>
+            <hr>
+            <ul class="content-plan ">
+                <li class="yes">Access to our core features</li>
+                <li class="yes">Email support</li>
+                <li class="yes">Advanced analytics</li>
+                <li class="yes">Custom integrations</li>
+                <li class="no">Priority support</li>
+            </ul>
+            <button class="choose-plan" type="button">Choose Plan</button>
+        </div>
+        <div class="pricing-card premium-plan">
+            <h2>Premium</h2>
+            <p>$29/month</p>
+            <hr>
+            <ul class="content-plan">
+                <li class="yes">Access to our core features</li>
+                <li class="yes">Email support</li>
+                <li class="yes">Advanced analytics</li>
+                <li class="yes">Custom integrations</li>
+                <li class="yes">Priority support</li>
+            </ul>
+            <button class="choose-plan" type="button">Choose Plan</button>
+        </div>
+    </div>
+</body>
+
+</html>
