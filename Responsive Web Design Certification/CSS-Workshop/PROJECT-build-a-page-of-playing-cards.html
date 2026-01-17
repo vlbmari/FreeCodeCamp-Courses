@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playing Cards</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background-color: rgb(204, 228, 231);
+      }
+
+      #playing-cards {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .card {
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        height: 300px;
+        width: 200px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 10px;
+        transition: 0.3s ease;
+      }
+      .card:hover {
+        transform: scale(1.02);
+        box-shadow: 2px 2px 4px 1px rgb(98, 97, 97);
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        padding: 8px;
+      }
+
+      .middle {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        font-size: 4rem;
+      }
+      .right {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-end;
+        padding: 8px;
+      }
+
+      .inverse {
+        transform: rotate(-180deg);
+      }
+
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main id="playing-cards">
+      <div class="card">
+        <div class="left"><span>A</span><span>♠</span></div>
+        <div class="middle">
+          <span>♥</span>
+        </div>
+        <div class="right">
+          <span class="inverse">♠</span><span class="inverse">A</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="left"><span>2</span><span>♣</span></div>
+        <div class="middle">
+          <span>♣</span>
+        </div>
+        <div class="right">
+          <span class="inverse">♣</span><span class="inverse">2</span>
+        </div>
+      </div>
+      <div class="card red">
+        <div class="left"><span>3</span><span>♥</span></div>
+        <div class="middle">
+          <span>♥</span>
+        </div>
+        <div class="right">
+          <span class="inverse">♥</span><span class="inverse">3</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="left"><span>4</span><span>♣</span></div>
+        <div class="middle">
+          <span>♣♣</span>
+          <span class="inverse">♣♣</span>
+        </div>
+        <div class="right">
+          <span class="inverse">♣</span><span class="inverse">4</span>
+        </div>
+      </div>
+      <div class="card red">
+        <div class="left"><span>5</span><span>♦</span></div>
+        <div class="middle">
+          <span>♦♦</span>
+          <span>♦</span>
+          <span>♦♦</span>
+        </div>
+        <div class="right">
+          <span class="inverse">♦</span><span class="inverse">5</span>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
