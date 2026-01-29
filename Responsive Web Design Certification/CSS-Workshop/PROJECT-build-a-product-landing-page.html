@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Product Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding-top: 100px;
+            /* Espaço para o header fixo não cobrir o título */
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            padding: 10px 5%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        #header-img {
+            width: 250px;
+        }
+
+        #nav-bar {
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            justify-content: end;
+            gap: 15px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #5768ff;
+            font-weight: 600;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #333;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+
+        }
+
+        #form {
+            display: flex;
+            justify-content: center;
+        }
+
+        #email {
+            padding: 10px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #submit {
+            padding: 10px 20px;
+            background-color: #f1c40f;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        #video {
+            display: block;
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+            margin: 50px auto;
+            border: none;
+        }
+
+        #pricing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 30px;
+            padding: 20px;
+        }
+
+        #pricing article {
+            border: 1px solid black;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+
+
+        #pricing article h3 {
+            background-color: #ddd;
+            width: 100%;
+            margin: 0;
+            padding: 15px 0;
+            text-transform: uppercase;
+        }
+
+        span {
+            font-size: 1.5rem;
+        }
+
+        button {
+            width: 70px;
+            height: 40px;
+            background-color: #f1c40f;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            #header {
+                grid-template-columns: 1fr;
+                /* Empilha logo e menu em telas pequenas */
+                justify-items: center;
+            }
+
+            #nav-bar {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <img id="header-img"
+            src="https://cdn.freecodecamp.org/testable-projects-fcc/images/product-landing-page-logo.png">
+        <nav id="nav-bar">
+            <a class="nav-link" href="#features">
+                Features</a>
+            <a class="nav-link" href="#how-it-work">
+                How It Work</a>
+            <a class="nav-link" href="#pricing">
+                Pricing</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Handcrafted, home-made masterpieces</h1>
+        <form id="form" method="POST" action="https://www.freecodecamp.org/email-submit">
+            <input type="email" name="email" id="email" placeholder="Enter your email address">
+            <input class="main-button" id="submit" type="submit" value="Get Started"></input>
+        </form>
+        <i class="fa fa-3x fa-fire"></i>
+        <h2 id="features">
+            Premium Materials</h2>
+        <p>Our trombones use the shiniest brass which is sourced locally. This will increase the longevity of your
+            purchase.</p>
+        <i class="fa fa-3x fa-truckfa"></i>
+        <h2>
+            Fast Shipping</h2>
+        <p>We make sure you receive your trombone as soon as we have finished making it. We also provide free returns if
+            you are not satisfied.</p>
+        <i class="fa-3x fa-battery-full"></i>
+        <h2>
+            Quality Assurance</h2>
+        <p>For every purchase you make, we will ensure there are no damages or faults and we will check and test the
+            pitch of your instrument.</p>
+        <section id="how-it-work">
+            <iframe id="video" src="https://www.youtube.com/watch?v=E7OyTiuwY9M" controls>
+            </iframe>
+        </section>
+        <section id="pricing">
+            <article>
+                <h3>Tenor Trombone</h3>
+                <span>$600</span>
+                <p>Good for beginners
+                    Excellent sound quality
+                    Great for Jazz Bands
+                    Nice and shiny</p>
+                <button>Select</button>
+            </article>
+            <article>
+                <h3>Bass Trombone
+                </h3>
+                <span>$900</span>
+                <p>Sound quality is unmatched
+                    Best for professionals
+                    Absolutely stunning
+                    Durable and long lasting</p>
+                <button>Select</button>
+            </article>
+            <article>
+                <h3>Valve Trombone</h3>
+                <span>$1200</span>
+                <p>Plays similar to a Trumpet
+                    Great for Jazz Bands
+                    Beautiful in sound and appearance
+                    Just amazing</p>
+                <button type="button">Select</button>
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>
