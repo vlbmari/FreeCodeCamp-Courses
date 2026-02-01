@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* --- Reset e Configurações Gerais --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; 
+        text-decoration: none;
+        font-family: "Trebuchet MS", Arial, sans-serif;
+      }
+
+      body {
+        background-color: rgb(223, 223, 223);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column; 
+      }
+
+      a {
+        color: white;
+        transition: 0.3s;
+      }
+
+      header {
+        position: fixed;
+        background-color: rgb(103, 48, 129);
+        width: 100%;
+        height: 60px;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+      }
+
+      #navbar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+        padding-right: 20px;
+      }
+
+      #navbar a {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      #navbar a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+      }
+
+      section#welcome-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      #welcome-section i {
+        color: purple;
+        font-size: 1.4rem;
+        margin-top: 10px;
+      }
+
+      #project-section {
+        background-color: rgb(218, 178, 255);
+        padding: 80px 20px 50px 20px; 
+        flex: 1; 
+      }
+
+      .titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        text-align: center;
+      }
+
+      #project-section hr {
+        border: 2px solid purple;
+        width: 100px;
+        margin-top: 20px;
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 250px);
+        gap: 150px;
+        justify-content: center;
+        margin: 40px auto;
+        max-width: 1200px;
+      }
+
+      article {
+        display: flex;
+        flex-direction: column; 
+        width: 250px;
+        min-height: 320px; 
+        padding: 20px;
+        border: 2px solid gray;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s;
+      }
+
+      article:hover {
+        transform: translateY(-5px);
+        border-color: purple;
+      }
+
+      .project-tile {
+        background-color: purple;
+        color: white;
+        padding: 10px;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+
+      article p {
+        padding: 10px 0;
+        line-height: 1.4;
+        color: #333;
+      }
+
+      
+      .link-project {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        background-color: gray;
+        color: white;
+        width: 120px;
+        margin: auto auto 0 auto; 
+      }
+
+      .link-project:hover {
+        background-color: #555;
+      }
+
+
+      #contact {
+        background-color: rgb(53, 0, 53);
+        padding: 50px 20px;
+        color: white;
+      }
+
+      #contact i {
+        color: rgb(218, 178, 255);
+      }
+
+      .social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .social a {
+        padding: 10px 20px;
+        color: rgb(221, 221, 221);
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social a:hover {
+        color: white;
+        transform: scale(1.1);
+      }
+
+
+      @media (max-width: 450px) {
+        #navbar a {
+          font-size: 1rem;
+          padding: 10px;
+        }
+
+        .projects {
+          gap: 50px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav id="navbar">
+        <a href="#welcome-section">About</a>
+        <a href="#project-section">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <section id="welcome-section">
+      <h1>Hey I'm Mari</h1>
+      <i>a front-end web developer</i>
+    </section>
+    <section id="project-section">
+      <div class="titles">
+        <h2>These are some of my projects</h2>
+        <hr />
+      </div>
+      <div class="projects">
+        <article>
+          <h3 class="project-tile">Guia Dev</h3>
+          <p>
+            A project crafted for those who, just like me, love exploring the
+            universe of technology.
+          </p>
+          <a
+            class="link-project"
+            target="_blank"
+            href="https://vlbmari.github.io/Projeto_HTML_CSS_JS_Alura/"
+            alt="projeto guia dev"
+            >Project</a
+          >
+        </article>
+        <article>
+          <h3 class="project-tile">Generative AI 🚀</h3>
+          <p>
+            I've created an e-book about n8n and Artificial Intelligence,
+            combining automation and AI concepts in a simple and practical way.
+          </p>
+          <a
+            class="link-project"
+            target="_blank"
+            href="https://github.com/vlbmari/prompts-recipe-to-create-a-ebook"
+            >Project</a
+          >
+        </article>
+        <article>
+          <h3 class="project-tile">Podcast in Video</h3>
+          <p>
+            To bring the video to life, I used tools like Google AI Studio,
+            ElevenLabs, HeyGen and CapCut while also enhancing my prompt
+            engineering skills.
+          </p>
+          <a
+            class="link-project"
+            target="_blank"
+            href="https://www.linkedin.com/posts/vlbmari_ia-inteligenciaartificial-dio-activity-7379322273712795649-Y2dU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEyNPmoBSc1w1s-yyX4vct9hYeHxFxOOa2k"
+            >Project</a
+          >
+        </article>
+      </div>
+    </section>
+    <footer id="contact">
+      <div class="titles">
+        <h2>Let's work together...</h2>
+        <i>How do you take your coffee?</i>
+        <hr />
+      </div>
+      <div class="social">
+        <span class="fab fa-linkedin"></span>
+        <a
+          target="_blank"
+          id="profile-link"
+          href="https://www.linkedin.com/in/vlbmari/"
+          >Linkedin</a
+        >
+        <span class="fab fa-github"></span
+        ><a target="_blank" id="profile-link" href="https://github.com/vlbmari"
+          >GitHub</a
+        >
+        <span class="fab fa-at"></span
+        ><a
+          target="_blank"
+          id="profile-link"
+          href="mailto:slb.marianavitoria@gmail.com"
+          >Email</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
