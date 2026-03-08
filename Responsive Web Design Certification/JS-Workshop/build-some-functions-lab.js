@@ -16,3 +16,8 @@ function maskEmail(email){
 
 const email = 'apple.pie@example.com';
 console.log(maskEmail(email));
+
+//Build a Celsius to Fahrenheit Converter
+function convertCtoF(tempCelsius){
+  return tempCelsius * (9/5) + 32;
+}
