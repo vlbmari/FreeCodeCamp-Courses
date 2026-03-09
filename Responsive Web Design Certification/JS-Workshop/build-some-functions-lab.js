@@ -49,3 +49,45 @@ console.log(cardCounter("A"));
 count = 0;
 cardCounter(2); cardCounter("J"); cardCounter(9); cardCounter(2);
 console.log(cardCounter(7)); 
+
+//Build a Leap Year Calculator
+//Build a Leap Year Calculator
+const year = 2026;
+
+function isLeapYear(year){
+  if((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return `${year} is a leap year.`;
+  }else{
+    return `${year} is not a leap year.`;
+  }
+}
+
+let result = isLeapYear(year);
+console.log(result);
+
+//Implement the Truncate String Algorithm
+function truncateString(str,num){
+  if (str.length > num){
+    return str.slice(0, num) + "..."
+  }else if(str.length <= num){
+    return str
+  }
+}
+
+console.log(truncateString("Hello Word", 10))
+
+//Build a Confirm the Ending Tool
+const confirmEnding = (str, str2) => {
+  const stringLength = str2.length;
+  const endString = str.slice(-stringLength);
+  
+  if(endString === str2){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+console.log(confirmEnding("Bastian", "n"));          
+console.log(confirmEnding("Congratulation", "on")); 
+console.log(confirmEnding("Open sesame", "sage"));
