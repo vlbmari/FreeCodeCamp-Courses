@@ -1,3 +1,4 @@
+//Build a Fortune Teller
 const fortune1 = "Your cat will look very cuddly today.";
 const fortune2 = 'The weather will be nice tomorrow.';
 const fortune3 = 'Be cautious of your new neighbors.';
