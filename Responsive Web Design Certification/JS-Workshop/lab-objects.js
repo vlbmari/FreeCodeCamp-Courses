@@ -54,3 +54,50 @@ const currentQuestion = getRandomQuestion(questions);
 const resultComputer = getRandomComputerChoice(currentQuestion.choices);
 console.log(getResults(currentQuestion, resultComputer));
 
+
+//Build a Record Collection
+const recordCollection = {
+  2548: {
+    albumTitle: 'Slippery When Wet',
+    artist: 'Bon Jovi',
+    tracks: ['Let It Rock', 'You Give Love a Bad Name']
+  },
+  2468: {
+    albumTitle: '1999',
+    artist: 'Prince',
+    tracks: ['1999', 'Little Red Corvette']
+  },
+  1245: {
+    artist: 'Robert Palmer',
+    tracks: []
+  },
+  5439: {
+    albumTitle: 'ABBA Gold'
+  }
+};
+
+const { ...recordCollectionCopy } = recordCollection;
+
+updateRecords(recordCollectionCopy, 1245, "artist", "oi");
+
+
+function updateRecords(records, id, prop, value) {
+  if (records.hasOwnProperty(id)) {
+    console.log("Album found");
+
+    if (value === "") {
+      delete records[id][prop];
+      console.log("Property deleted");
+    } else if (prop !== "tracks" && value !== "") {
+      records[id][prop] = value;
+    } else if (prop === "tracks" && value !== "" && Object.hasOwn(records[id], "tracks") === false) {
+      records[id][prop] = [];
+      records[id][prop].push(value);
+    } else if (prop === "tracks" && value !== "") {
+      records[id][prop].push(value);
+    }
+  } else {
+    console.log("Algum not found")
+  }
+  return records;
+}
