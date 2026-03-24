@@ -101,3 +101,70 @@ function updateRecords(records, id, prop, value) {
   }
   return records;
 }
+
+//Build a Cargo Manifest Validator
+  const manifest = {
+    containerId: 1,
+    destination: "Monterey, California, USA",
+    weight: 831,
+    unit: "lb",
+    hazmat: false
+  }
+
+function normalizeUnits(manifest){
+  const { ...manifestCopy } = manifest;
+  if(manifestCopy["unit"] === "lb"){
+    manifestCopy["weight"] *= 0.45;
+    manifestCopy["unit"] = "kg"
+  } 
+  return manifestCopy;
+}
+
+function validateManifest(manifest) {
+  let validatedManifest = {};
+
+  if (manifest.containerId === undefined) {
+    validatedManifest.containerId = "Missing";
+  } else if (typeof manifest.containerId !== "number" || !Number.isInteger(manifest.containerId) || manifest.containerId <= 0) {
+    validatedManifest.containerId = "Invalid";
+  }
+
+  if (manifest.destination === undefined) {
+    validatedManifest.destination = "Missing";
+  } else if (typeof manifest.destination !== "string" || manifest.destination.trim() === "") {
+    validatedManifest.destination = "Invalid";
+  }
+
+  if (manifest.weight === undefined) {
+    validatedManifest.weight = "Missing";
+  } else if (typeof manifest.weight !== "number" || Number.isNaN(manifest.weight) || manifest.weight <= 0) {
+    validatedManifest.weight = "Invalid";
+  }
+
+  if (manifest.unit === undefined) {
+    validatedManifest.unit = "Missing";
+  } else if (manifest.unit !== "lb" && manifest.unit !== "kg") {
+    validatedManifest.unit = "Invalid";
+  }
+
+  if (manifest.hazmat === undefined) {
+    validatedManifest.hazmat = "Missing";
+  } else if (typeof manifest.hazmat !== "boolean") {
+    validatedManifest.hazmat = "Invalid";
+  }
+
+  return validatedManifest;
+}
+
+function processManifest(manifest){
+  const normalizedManifest = normalizeUnits(manifest);
+  const validatedManifest = validateManifest(manifest);
+  if (Object.keys(validatedManifest).length === 0) {
+    console.log(`Validation success: ${manifest.containerId}`)
+    console.log(`Total weight: ${normalizedManifest.weight} kg`)
+  }
+  else {
+    console.log(`Validation error: ${manifest.containerId}`);
+    console.log(validatedManifest);
+  }
+}
