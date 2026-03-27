@@ -24,3 +24,19 @@ function factorialCalculator(num){
 const factorial = factorialCalculator(num)
 const resultMsg = `Factorial of ${num} is ${factorial}`;
 console.log(resultMsg);
+
+//Implement the Mutations Algorith
+const names = ["Mariana", "Mari"]
+const names2 = ["Patricia", "Paty"]
+function mutation(arr){
+  const first = arr[0].toLowerCase();
+  const second = arr[1].toLowerCase();
+  for(let i = 0; i < second.length; i++){
+    if(!first.includes(second[i])){
+      return false
+    }
+  }
+  return true;
+}
+  
+console.log(mutation(names))
