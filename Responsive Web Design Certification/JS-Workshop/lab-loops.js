@@ -58,5 +58,17 @@ function chunkArrayInGroups(arr, size){
 }
 console.log(chunkArrayInGroups(array,2))
 
-
+//Build a Profile Lookup
+function lookUpProfile(name, property) {
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].firstName === name) {
+      if (contacts[i].hasOwnProperty(property)) {
+        return contacts[i][property];
+      } else {
+        return "No such property";
+      }
+    }
+  }
+  return "No such contact";
+}
 
