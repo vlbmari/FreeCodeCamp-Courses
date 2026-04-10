@@ -72,3 +72,15 @@ function lookUpProfile(name, property) {
   return "No such contact";
 }
 
+//Build a String Repeating Function
+function repeatStringNumTimes(str, num){
+  let newStr = [];
+  for(let i = 0; i < num; i++){
+    newStr.push(str);
+  }
+  if(num <= 0)
+    return "";
+    
+  return newStr.join("");
+}
+
