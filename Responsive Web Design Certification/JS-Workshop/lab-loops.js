@@ -84,3 +84,19 @@ function repeatStringNumTimes(str, num){
   return newStr.join("");
 }
 
+//Build a Missing Letter Detector
+const alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+
+const fearNotLetter = (str) => {
+  const startStr = alphabet.indexOf(str[0]);
+  const endStr = str.length;
+  const alphabetSliced = alphabet.slice(startStr,endStr + startStr)
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] !== alphabetSliced[i]) {
+
+      return alphabetSliced[i];
+    }
+  }
+  return undefined;
+}
+console.log(fearNotLetter("mnoq"))
