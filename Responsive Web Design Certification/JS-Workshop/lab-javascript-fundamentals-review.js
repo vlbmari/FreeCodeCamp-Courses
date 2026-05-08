@@ -15,6 +15,17 @@ function largestOfAll(arr){
     }
     return maxNumber;
   } 
-
 console.log(largestOfAll(array));
 
+
+//Build a First Element Finder
+const array = [1, 3, 5, 8];
+function findElement(arr, func){
+  for (let i of arr){
+    if(func(i) === true){
+      return i;
+    }
+  }
+  return undefined;
+}
+console.log(findElement([1, 3, 5, 7, 9, 10], function(num) { return num % 2 === 0; }));
