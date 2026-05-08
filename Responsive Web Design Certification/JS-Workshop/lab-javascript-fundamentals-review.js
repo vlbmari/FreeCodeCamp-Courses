@@ -37,3 +37,22 @@ function frankenSplice(arr1, arr2, index){
   return arr3.toSpliced(index, 0 , ...arr1);
 }
 console.log(frankenSplice([1, 2], ["a", "b"], 1));
+
+
+//Build a Pyramid Generator
+function pyramid(char, rows, inverted) {
+  let result = "\n";
+  const lines = [];
+
+  for (let i = 1; i <= rows; i++) {
+    const spaces = " ".repeat(rows - i);
+    const pattern = char.repeat(2 * i - 1);
+    lines.push(spaces + pattern);
+  }
+
+  if (inverted) {
+    lines.reverse();
+  }
+
+  return result + lines.join("\n") + "\n";
+}
