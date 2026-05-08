@@ -29,3 +29,11 @@ function findElement(arr, func){
   return undefined;
 }
 console.log(findElement([1, 3, 5, 7, 9, 10], function(num) { return num % 2 === 0; }));
+
+
+//Implement the Slice and Splice Algorithm
+function frankenSplice(arr1, arr2, index){
+  let arr3 = [...arr2];
+  return arr3.toSpliced(index, 0 , ...arr1);
+}
+console.log(frankenSplice([1, 2], ["a", "b"], 1));
