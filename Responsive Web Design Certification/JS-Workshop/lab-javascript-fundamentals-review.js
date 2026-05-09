@@ -56,3 +56,53 @@ function pyramid(char, rows, inverted) {
 
   return result + lines.join("\n") + "\n";
 }
+
+//Build a Gradebook App
+const array = [92, 88, 12, 77, 57, 100, 67, 38, 97, 89];
+
+function getAverage(arr){
+  let totalItens = 0;
+  let sumArr = 0;
+  for (let i = 0; i < arr.length; i++){
+    totalItens += 1 ;
+    sumArr += arr[i];
+  }
+  return sumArr / totalItens;
+}
+
+function getGrade(score){
+  if(score == 100){
+    return "A+";
+  }else if(score >= 90 && score <= 99){
+    return "A";
+  }else if(score >= 80 && score <= 89){
+    return "B";
+  }else if(score >= 70 && score <= 79){
+    return "C";
+  }else if(score >= 60 && score <= 69){
+    return "D";
+  }else if(score >= 0 && score <= 59){
+    return "F";
+  }
+}
+
+function hasPassingGrade(resultScore){
+  let grade = getGrade(resultScore);
+  if (grade === "F"){
+    return false;
+  }
+  return true;
+}
+
+function studentMsg(arr, score){
+  let msgMain = `Class average: ${getAverage(arr)}. Your grade: ${getGrade(score)}. `;
+  if(hasPassingGrade(score) === true){ 
+  return msgMain + "You passed the course.";
+  }else{
+    return msgMain + "You failed the course.";
+  }
+}
+
+console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
+
+
