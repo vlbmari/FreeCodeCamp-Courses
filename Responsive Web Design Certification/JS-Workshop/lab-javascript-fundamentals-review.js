@@ -119,3 +119,21 @@ function titleCase(phrase) {
 }
 
 console.log(titleCase("javaScript is fun"));
+
+//Implement a Falsy Remover
+bouncer([null, NaN, 1, 2, undefined]) 
+bouncer(["a", "b", "c"])
+bouncer([7, "ate", "", false, 9])
+
+function bouncer(arr){
+  let newArr = [];
+  for(let i = 0; i < arr.length; i++){
+    if (arr[i]){
+      newArr.push(arr[i]);  
+    }else{
+      arr.toSpliced(i, 1);
+    }
+    
+  }
+  return newArr;
+}
