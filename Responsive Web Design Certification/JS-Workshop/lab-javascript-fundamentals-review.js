@@ -106,3 +106,16 @@ function studentMsg(arr, score){
 console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
 
 
+//Build a Title Case Converter
+function titleCase(phrase) {
+  const words = phrase.toLowerCase().split(" ");
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    words[i] = word[0].toUpperCase() + word.slice(1);
+    
+    console.log(`Palavra processada: ${words[i]}`);
+  }
+  return words.join(" ");
+}
+
+console.log(titleCase("javaScript is fun"));
