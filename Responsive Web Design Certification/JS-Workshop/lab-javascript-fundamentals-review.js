@@ -193,10 +193,24 @@ function uniteUnique(arr1, arr2){
   for(let arg of arguments){
     for(let i of arg){
       if(!allArr.includes(i)){
-        allArr.push(i)
+        allArr.push(i);
       }
     }
   }
   return allArr;
 }
-console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+
+//Build a Password Generator App
+function generatePassword(passwordLength){
+  let strRandom = [];
+  const allChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()".split("");
+  for(let i = 0; i < passwordLength; i++){
+    let indexRandom = Math.floor(Math.random() * allChar.length);
+    strRandom.push(allChar[indexRandom]);
+  }
+  return strRandom.join("");
+}
+
+const password = generatePassword(7);
+console.log(password)
