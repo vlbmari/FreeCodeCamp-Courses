@@ -186,3 +186,17 @@ function removeProduct(name, qtd){
 
 addProduct({name: "FLOur", quantity: 5});
 removeProduct("FLOUR", 5);
+
+//Implement a Unique Sorted Union
+function uniteUnique(arr1, arr2){
+  let allArr = [];
+  for(let arg of arguments){
+    for(let i of arg){
+      if(!allArr.includes(i)){
+        allArr.push(i)
+      }
+    }
+  }
+  return allArr;
+}
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]))
