@@ -213,4 +213,5 @@ function generatePassword(passwordLength){
 }
 
 const password = generatePassword(7);
-console.log(password)
+console.log(`Generated password: ${password}`)
+
