@@ -137,3 +137,52 @@ function bouncer(arr){
   }
   return newArr;
 }
+
+//Build an Inventory Management Program
+const inventory = [];
+
+function findProductIndex(name){
+  name = name.toLowerCase();
+	for(let i = 0; i < inventory.length; i++){
+		if(inventory[i].name == name){
+		  return i;
+		}
+  }
+	return -1
+}
+console.log(findProductIndex("Flour"));
+
+function addProduct(obj){
+  let indexFound = 0;
+  obj.name = obj.name.toLowerCase()
+  if(findProductIndex(obj.name) !== -1){
+    indexFound = findProductIndex(obj.name);
+    inventory[indexFound].quantity += obj.quantity;
+    return console.log(`${obj.name} quantity updated`);
+  }else{
+    inventory.push(obj)
+    return console.log(`${obj.name} added to inventory`);
+  }
+}
+
+function removeProduct(name, qtd){
+  name = name.toLowerCase();
+  let indexProduct = findProductIndex(name);
+  if(indexProduct === -1){
+    return console.log(`${name} not found`);
+  }
+
+  if(inventory[indexProduct].quantity - qtd < 0){
+    return console.log(`Not enough ${inventory[indexProduct].name} available, remaining pieces: ${inventory[indexProduct].quantity}`)
+  }
+
+  inventory[indexProduct].quantity -= qtd;
+  console.log(`Remaining ${inventory[indexProduct].name} pieces: ${inventory[indexProduct].quantity}`);
+
+  if(inventory[indexProduct].quantity === 0){
+    inventory.splice(indexProduct, 1);
+  }
+}
+
+addProduct({name: "FLOur", quantity: 5});
+removeProduct("FLOUR", 5);
