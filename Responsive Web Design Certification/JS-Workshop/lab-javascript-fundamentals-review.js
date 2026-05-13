@@ -226,4 +226,27 @@ function sumAll(arr){
   return allNumers;
 }
 
-sumAll([4,1])
+sumAll([4,1]);
+
+
+//Implement a DNA Pair Generator
+function pairElement(str){
+  let arr = []
+  for(let letter of str){
+    if(letter === "A"){
+      arr.push([letter, "T"])
+    }
+    if(letter === "T"){
+      arr.push([letter, "A"])
+    }
+    if(letter === "C"){
+      arr.push([letter, "G"])
+    }
+    if(letter === "G"){
+      arr.push([letter, "C"])
+    }
+  }
+  return arr
+}
+
+pairElement("ATCGA")
