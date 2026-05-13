@@ -231,22 +231,41 @@ sumAll([4,1]);
 
 //Implement a DNA Pair Generator
 function pairElement(str){
-  let arr = []
+  let arr = [];
   for(let letter of str){
     if(letter === "A"){
-      arr.push([letter, "T"])
+      arr.push([letter, "T"]);
     }
     if(letter === "T"){
-      arr.push([letter, "A"])
+      arr.push([letter, "A"]);
     }
     if(letter === "C"){
-      arr.push([letter, "G"])
+      arr.push([letter, "G"]);
     }
     if(letter === "G"){
-      arr.push([letter, "C"])
+      arr.push([letter, "C"]);
     }
   }
-  return arr
+  return arr;
 }
 
-pairElement("ATCGA")
+pairElement("ATCGA");
+
+//Implement an HTML Entity Converter
+function convertHTML(str){
+  let newStr = [];
+   for(let char of str){
+    switch (char) {
+      case "&": char = "&amp;"; break;
+      case "<": char = "&lt;"; break;
+      case ">": char = "&gt;"; break;
+      case '"': char = "&quot;"; break;
+      case "'": char = "&apos;"; break;
+    }
+
+    newStr.push(char);
+   }
+  return newStr.join("");
+}
+
+console.log(convertHTML("Hamburgers < Pizza < Tacos"));
