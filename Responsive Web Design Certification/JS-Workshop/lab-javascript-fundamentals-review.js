@@ -269,3 +269,24 @@ function convertHTML(str){
 }
 
 console.log(convertHTML("Hamburgers < Pizza < Tacos"));
+
+
+//Build an Odd Fibonacci Sum Calculator
+function sumFibs(num) {
+  let previous = 0;  
+  let currentNum = 1;   
+  let sum = 0;    
+
+  while (currentNum <= num) {
+    if (currentNum % 2 !== 0) {
+      sum += currentNum; 
+    }
+
+    let next = previous + currentNum;
+    previous = currentNum;
+    currentNum = next;
+  }
+  return sum;
+}
+
+console.log(sumFibs(1000))
