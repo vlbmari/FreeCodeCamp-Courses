@@ -213,5 +213,17 @@ function generatePassword(passwordLength){
 }
 
 const password = generatePassword(7);
-console.log(`Generated password: ${password}`)
+console.log(`Generated password: ${password}`); 
 
+//Design a Sum All Numbers Algorithm
+function sumAll(arr){
+  const numMin = Math.min(...arr)
+  const numMax = Math.max(...arr);
+  let allNumers = 0;
+  for(let i = numMin; i <= numMax; i++){
+    allNumers += i;
+  }
+  return allNumers;
+}
+
+sumAll([4,1])
