@@ -290,3 +290,21 @@ function sumFibs(num) {
 }
 
 console.log(sumFibs(1000))
+
+//Implement an Element Skipper
+function dropElements(arr, func){
+  let index = 0;
+  let newArr  = [];
+    for(let i = 0; i < arr.length; i++){
+      if(func(arr[i]) === false){
+        index ++;
+      }else{
+        break;
+      }
+  } 
+  newArr = arr.slice(index);
+  return newArr;
+}
+
+console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;}));
+console.log(dropElements([0, 1, 0, 1], function(n) {return n === 1;}));
