@@ -308,3 +308,114 @@ function dropElements(arr, func){
 
 console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;}));
 console.log(dropElements([0, 1, 0, 1], function(n) {return n === 1;}));
+
+//Build a Playlist Remix Engine
+const playlists = [
+  [
+    {
+      trackId: "trk101",
+      artist: "Velvet Comet",
+      title: "Crimson Afterglow",
+      votes: 5,
+      bpm: 122
+    },
+    {
+      trackId: "trk102",
+      artist: "Neon Harbor",
+      title: "Static Horizon",
+      votes: 2,
+      bpm: 108
+    },
+    {
+      trackId: "trk103",
+      artist: "Lunar Arcade",
+      title: "Midnight Frequency",
+      votes: 4,
+      bpm: 128
+    }
+  ],
+  [
+    {
+      trackId: "trk201",
+      artist: "Solar Echo",
+      title: "Glass Skyline",
+      votes: 3,
+      bpm: 115
+    },
+    {
+      trackId: "trk202",
+      artist: "Velvet Comet",
+      title: "Satellite Hearts",
+      votes: 6,
+      bpm: 124
+    }
+  ]
+];
+
+function flattenPlaylists(arr){
+  let flatArray = [];
+  if(!Array.isArray(arr)){
+    return [];
+  }
+
+  for(let i = 0; i < arr.length; i++){
+    for(let j = 0; j < arr[i].length; j++){
+      arr[i][j].source = [i, j];
+      flatArray.push(arr[i][j])
+    } 
+  }
+  return flatArray;
+}
+
+function scoreTracks(arr){
+  for(let i = 0; i < arr.length; i++){
+    arr[i].score = arr[i].votes * 10 - Math.abs(arr[i].bpm - 120);
+  }
+  return arr;
+}
+
+function dedupeTracks(arr){
+  for(let i = 0; i < arr.length; i++){
+    for(let j = i + 1; j < arr.length; j++){
+      if(arr[i].trackId === arr[j].trackId){
+        arr.splice(j, 1);
+      }
+    }
+  }
+  return arr;
+}
+
+function enforceArtistQuota(arr, maxArtist){
+  let count = 0;
+  for(let i = 0; i < arr.length; i++){
+    for(let j = i + 1; j < arr.length; j++){
+      if(arr[i].artist === arr[j].artist){
+        count ++;
+      }
+      if(count > maxArtist){
+        arr.splice(j,1);
+      }
+    }
+  }
+  return arr;
+}
+
+function buildSchedule(arr){
+  for(let i = 0; i < arr.length; i++){
+    arr[i].slot = i + 1;
+  }
+  return arr;
+}
+
+function remixPlaylist(arr, maxArtist){
+  let flatten = flattenPlaylists(arr);
+  let score = scoreTracks(flatten);
+  let dedupe = dedupeTracks(score);
+  let enforce = enforceArtistQuota(dedupe, maxArtist);
+  let build = buildSchedule(enforce);
+
+
+  return build;
+}
+
+console.log(remixPlaylist(playlists, 2));
