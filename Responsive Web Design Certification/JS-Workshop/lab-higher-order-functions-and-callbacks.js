@@ -59,4 +59,11 @@ function diffArray(arr1, arr2) {
   return [...apenasNoArr1, ...apenasNoArr2];
 }
 
+//Implement a Value Remover Function
+function destroyer(arr){
+  const args = Array.from(arguments);
+  const arrNew = arr.filter((item) => !args.includes(item))
+  return arrNew;
+}
 
+destroyer([1, 2, 3, 1, 2, 3], 2, 3)
