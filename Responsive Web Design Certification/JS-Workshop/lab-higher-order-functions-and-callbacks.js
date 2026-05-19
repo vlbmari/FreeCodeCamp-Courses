@@ -40,3 +40,23 @@ function sortByYear(book1, book2){
 
 let filteredBooks = books.filter((book) => book.releaseYear <= 1950)
 filteredBooks.sort(sortByYear)
+
+
+//Implement a Sorted Index Finder
+function getIndexToIns(arr, num){
+  arr.sort((a, b) => a - b);
+  const index = arr.findIndex((elemento) => elemento >= num);
+  return index === -1 ? arr.length : index;
+}
+
+//Build a Symmetric Difference Function
+const arrayA = ["diamond", "stick", "apple"]
+const arrayB = ["stick", "emerald", "bread"]
+
+function diffArray(arr1, arr2) {
+  const apenasNoArr1 = arr1.filter(item => !arr2.includes(item));
+  const apenasNoArr2 = arr2.filter(item => !arr1.includes(item));
+  return [...apenasNoArr1, ...apenasNoArr2];
+}
+
+
