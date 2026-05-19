@@ -60,9 +60,8 @@ function diffArray(arr1, arr2) {
 }
 
 //Implement a Value Remover Function
-function destroyer(arr){
-  const args = Array.from(arguments);
-  const arrNew = arr.filter((item) => !args.includes(item))
+function destroyer(arr, ...valuesToDelete){
+  const arrNew = arr.filter((item) => !valuesToDelete.includes(item));
   return arrNew;
 }
 
