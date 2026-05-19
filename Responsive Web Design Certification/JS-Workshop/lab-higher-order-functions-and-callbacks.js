@@ -77,3 +77,28 @@ function whatIsInAName (arrObj, objSource){
 }
 
 whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "cookie": 2 });
+
+//Build a Prime Number Sum Calculator
+function sumPrimes (num){
+  if (num < 2) return 0;
+  let allNumbers = [];
+
+  for(let i = 2; i <= num; i++){
+    allNumbers.push(i)
+  }
+
+  function isPrime(n){
+    for(let i = 2; i <= Math.sqrt(n); i++){
+      if(n % i === 0){
+        return false
+      }
+    }
+    return true
+  }
+
+  const primes = allNumbers.filter((n) => isPrime(n));
+  return primes.reduce((acc,curr) => acc + curr);
+
+}
+
+console.log(sumPrimes(10));
