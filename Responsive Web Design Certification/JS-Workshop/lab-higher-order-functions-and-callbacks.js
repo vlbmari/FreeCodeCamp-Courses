@@ -38,8 +38,8 @@ function sortByYear(book1, book2){
   }
 }
 
-let filteredBooks = books.filter((book) => book.releaseYear <= 1950)
-filteredBooks.sort(sortByYear)
+let filteredBooks = books.filter((book) => book.releaseYear <= 1950);
+filteredBooks.sort(sortByYear);
 
 
 //Implement a Sorted Index Finder
@@ -50,8 +50,8 @@ function getIndexToIns(arr, num){
 }
 
 //Build a Symmetric Difference Function
-const arrayA = ["diamond", "stick", "apple"]
-const arrayB = ["stick", "emerald", "bread"]
+const arrayA = ["diamond", "stick", "apple"];
+const arrayB = ["stick", "emerald", "bread"];
 
 function diffArray(arr1, arr2) {
   const apenasNoArr1 = arr1.filter(item => !arr2.includes(item));
@@ -65,4 +65,15 @@ function destroyer(arr, ...valuesToDelete){
   return arrNew;
 }
 
-destroyer([1, 2, 3, 1, 2, 3], 2, 3)
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+
+
+//
+function whatIsInAName (arrObj, objSource){
+  const keysObj = Object.keys(objSource);
+  return arrObj.filter((obj) => 
+  keysObj.every((key) => obj[key] === objSource[key])
+  );
+}
+
+whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "cookie": 2 });
