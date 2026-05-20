@@ -102,3 +102,26 @@ function sumPrimes (num){
 }
 
 console.log(sumPrimes(10));
+
+//Implement a Range-Based LCM Calculator
+function smallestCommons(arr) {
+  arr.sort((a, b) => a - b);
+  let newArr = [];
+  for (let i = arr[0]; i <= arr[1]; i++) {
+    newArr.push(i);
+  }
+
+  let candidateLCM = arr[1];
+
+  while (true) {
+    const isDivisibleByAll = newArr.every(num => candidateLCM % num === 0);
+
+    if (isDivisibleByAll) {
+      return candidateLCM; 
+    }
+    candidateLCM += arr[1]; 
+  }
+}
+
+console.log(smallestCommons([5, 1])); 
+
