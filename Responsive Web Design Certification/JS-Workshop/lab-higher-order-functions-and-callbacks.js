@@ -125,3 +125,23 @@ function smallestCommons(arr) {
 
 console.log(smallestCommons([5, 1])); 
 
+//Create a Deep Flattening Tool
+function steamrollArray(arr){
+  let newArr = [...arr]
+
+  while(newArr.some((element) => Array.isArray(element))){
+    newArr = newArr.reduce((acc, curr) => {
+    if (Array.isArray(curr)) {
+      return acc.concat(curr); 
+    } else {
+      return acc.concat(curr);
+    }
+    }, []);
+  }
+  return newArr
+}
+
+console.log(steamrollArray([1, {}, [3, [[4]]]]))
+
+
+
