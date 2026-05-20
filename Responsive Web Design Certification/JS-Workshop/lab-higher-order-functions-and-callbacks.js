@@ -143,5 +143,18 @@ function steamrollArray(arr){
 
 console.log(steamrollArray([1, {}, [3, [[4]]]]))
 
+//Build an All-True Property Validator
+function truthCheck(collection, pre) {
+  let bool;
 
+  if(collection.every((obj) => obj[pre])){
+    bool = true;
+  }else{
+    bool = false;
+  }
+  
+  return bool
+}
+
+console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot"));
 
