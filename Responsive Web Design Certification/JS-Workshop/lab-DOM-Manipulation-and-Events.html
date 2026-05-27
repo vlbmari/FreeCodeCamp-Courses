@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Favorite Icon Toggler</title>
+    <style>
+      body{
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.5rem
+
+      }
+      .favorite-icon{
+        border: none;
+        background-color: white;
+        font-size: 1em
+
+      }
+      .filled{
+        color: red;
+      }
+      .item-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        width: 200px; 
+        padding: 10px 0;
+        border-bottom: 0.5px solid rgb(187, 187, 187);  
+
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Art Supplies</h1>
+      <ul class="item-list">
+        <li>120 gm paper <button class="favorite-icon">&#9825;</button> </li>
+        <li>Watercolor set <button class="favorite-icon">&#9825;</button></li>
+        <li>Lead pencil 6B <button class="favorite-icon">&#9825;</button></li>
+      </ul>
+    
+  </body>
+    <script>
+      //Build a Favorite Icon Toggler
+      const btnsFav = document.querySelectorAll(".favorite-icon");
+      btnsFav.forEach(function(btn){
+        btn.addEventListener("click", () => {
+          const isFilled = btn.classList.toggle("filled")
+          if (isFilled) {
+            btn.innerHTML = "&#10084;";
+          } else {
+            btn.innerHTML = "&#9825;";
+          }
+        })
+      })
+    </script>
+</html>
