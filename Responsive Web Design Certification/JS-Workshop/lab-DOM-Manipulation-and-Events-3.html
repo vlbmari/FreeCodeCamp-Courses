@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lightbox Viewer</title>
+  <style>
+    h1 {
+      background-color: #E6E6FA;
+      color: #708090;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 3%;
+      font-size: 2.5rem;
+      box-shadow: inset 0 0 20px 1px #708090;
+
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 9% auto;
+      background-color: #F5F5F5;
+    }
+
+    .lightbox {
+      display: none;
+      background-color: rgba(49, 100, 102, 0.899);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+
+    }
+
+    .lightbox button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 8vh;
+      color: darkgray;
+      transition: transform 0.2s;
+      position: fixed;
+      right: 3%;
+      top: 5%;
+
+    }
+
+    button:hover {
+      transform: scale(1.3);
+    }
+
+    .gallery img {
+      max-width: 270px;
+      height: 320px;
+      object-fit: cover;
+      object-position: center;
+      padding: 3px;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .lightbox img {
+      max-height: 80%;
+      margin: auto;
+      max-width: 80%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Museum Gallery</h1>
+  <div class="gallery">
+    <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/stonehenge-thumbnail.jpg"></img>
+    <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/storm-thumbnail.jpg"></img>
+    <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/trees-thumbnail.jpg"></img>
+  </div>
+  <div class="lightbox">
+    <button id="close-btn">&times;</button>
+    <img id="lightbox-image"></img>
+  </div>
+  <script>
+    //Build a Lightbox Viewer
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    const lightBox = document.querySelector(".lightbox")
+
+    galleryItems.forEach((galleryEl) =>
+
+      galleryEl.addEventListener("click", () => {
+        lightBox.style.display = "flex";
+        addImg(galleryEl)
+      })
+    )
+
+    const close = document.getElementById("close-btn")
+
+    close.addEventListener("click", () => lightBox.style.display = "none");
+    lightBox.addEventListener("click", () => lightBox.style.display = "none")
+
+    function addImg(gallEl) {
+      const lightBoxImage = document.getElementById("lightbox-image");
+
+      const linkNew = gallEl.src.replace("-thumbnail", "");
+      lightBoxImage.setAttribute("src", linkNew)
+    }
+  </script>
+</body>
+
+</html>
