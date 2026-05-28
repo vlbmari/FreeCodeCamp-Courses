@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Counter</title>
+    <style>
+        body {
+            font-family: arial, sans-serif;
+            background-color: lavender;
+        }
+
+        h1 {
+            color: darkblue;
+            text-shadow: 2px 2px 5px yellow
+        }
+
+        p {
+            color: darkblue;
+            font-weight: bold;
+        }
+
+        textarea {
+            font-size: 1.3em;
+            border-radius: 5px;
+            padding: 8px;
+            border: 1px solid darkgray;
+            min-height: 50px;
+            color: darkblue;
+        }
+
+        textarea:hover {
+            border: 2px solid gray;
+        }
+
+        textarea:focus {
+            border: 2px solid lightyellow;
+            outline: none;
+        }
+
+        .container {
+            margin: auto;
+            height: 95vh;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Real-time Character Counter</h1>
+        <textarea id="text-input" cols="30%" rows="6%" placeholder="Type something..."></textarea>
+        <p id="char-count">Character Count: 0/50</p>
+    </div>
+    <script>
+        //Build a Real Time Counter
+        const textArea = document.getElementById("text-input");
+
+        textArea.addEventListener("input", (e) => {
+            const text = e.target.value;
+            updateText(text.length)
+            if (text.length > 50) {
+                e.target.value = text.slice(0, 50);
+                updateText(50)
+            }
+        })
+
+        function updateText(length) {
+            const count = document.getElementById("char-count")
+
+            if (length < 50) {
+                count.style.color = "darkblue";
+            } else {
+                count.style.color = "red"
+            }
+            count.textContent = `Character Count: ${length}/50`
+        }
+    </script>
+</body>
+
+
+</html>
