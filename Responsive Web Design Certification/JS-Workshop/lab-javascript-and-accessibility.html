@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switcher</title>
+  <style>
+    .theme-light {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .theme-dark {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .theme-dream {
+      background-color: #e0f7fa;
+      color: #006064;
+    }
+
+    .theme-candy {
+      background-color: #fce4ec;
+      color: #880e4f;
+    }
+
+    body {
+      background-color: rgb(231, 231, 231);
+      font-family: sans-serif;
+      transition: background 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+      padding: 4px;
+      margin: 15px;
+      cursor: pointer;
+      text-align: center;
+      border: 1px dotted gray;
+      border-radius: 30px;
+      width: 80px;
+    }
+
+    #status {
+      text-align: center;
+      min-height: 20px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px;
+      font-weight: bold;
+      font-style: italic;
+      border-radius: 10px 2px;
+      border: 1px solid gray;
+      background-color: darkgray;
+      cursor: pointer;
+      transition: 0.2s;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      border-color: lightgray;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="theme-switcher-button" aria-haspopup="true" aria-expanded="false" aria-controls="theme-dropdown">Switch
+    Theme</button>
+  <ul id="theme-dropdown" role="menu" aria-labelledby="theme-switcher-button" hidden>
+    <li id="theme-light" role="menuitem">Light</li>
+    <li id="theme-dark" role="menuitem">Dark</li>
+    <li id="theme-dream" role="menuitem">Dream</li>
+    <li id="theme-candy" role="menuitem">Candy</li>
+  </ul>
+  <div id="status" aria-live="polite"></div>
+  <script>
+    //Build a Theme Switcher
+    const themes = [
+      { name: "light", message: "Hello sunshine — Light theme is on!" },
+      { name: "dark", message: "The night is yours — Dark theme is on!" },
+      { name: "dream", message: "Time to Dream! — Dream theme is on!" },
+      { name: "candy", message: "Watch out for the ants!  — Candy theme is on!" }
+    ]
+
+    const themeSwitherButton = document.getElementById
+      ("theme-switcher-button");
+
+
+
+    themeSwitherButton.addEventListener("click", () => {
+      const themeDropdown = document.getElementById("theme-dropdown");
+
+      if (themeDropdown.hidden) {
+        themeDropdown.hidden = false;
+        themeSwitherButton.setAttribute("aria-expanded", "true");
+
+        themeDropdown.addEventListener("click", (e) => {
+          const selected = e.target.textContent.toLowerCase();
+          const body = document.querySelector("body");
+          const status = document.getElementById("status")
+
+
+          themes.forEach(t => body.classList.remove("theme-" + t.name));
+
+          for (let t of themes) {
+            if (t.name === selected) {
+              body.classList.add("theme-" + t.name);
+              status.textContent = t.message;
+            }
+          }
+        });
+
+      } else {
+        themeDropdown.hidden = true;
+        themeSwitherButton.setAttribute("aria-expanded", "false");
+      }
+
+    })
+  </script>
+</body>
+
+</html>
