@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(21, 21, 32);
+            color: white;
+        }
+
+        .container {
+            background-color: lightyellow;
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px;
+            box-shadow: 0px 6px 5px 1px rgba(102, 51, 153, 0.4);
+            color: rgb(21, 21, 32);
+        }
+
+        input {
+            background-color: transparent;
+            padding: 5px;
+            border: 0px;
+            border-bottom: 2px solid RebeccaPurple;
+        }
+
+        button {
+            margin-left: 15px;
+            padding: 7px;
+            border-radius: 15px;
+            border-style: none;
+            background-color: RebeccaPurple;
+            color: lightyellow;
+        }
+
+        .tip {
+            background-color: rgb(21, 50, 32);
+            text-align: center;
+            border-radius: 30px;
+            padding: 15px;
+            color: lightyellow;
+            max-width: 270px;
+            box-shadow: inset 0px 0px 5px 1px rgb(21, 21, 32);
+            ;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Is it a Palindrome?</h1>
+    <div class="container">
+
+        <p>Enter in text to check for a palindrome:</p>
+        <input id="text-input" placeholder="Type something..."></input>
+        <button id="check-btn">Check</button>
+        <span id="result"></span>
+    </div>
+    <i class="tip">💡 A palindrome is a word or sentence that's spelled the same way both forward and backward, ignoring
+        punctuation, case, and spacing.</i>
+    <script>
+        const textInput = document.getElementById("text-input");
+        const checkBtn = document.getElementById("check-btn");
+        const result = document.getElementById("result");
+
+        checkBtn.addEventListener("click", () => {
+            const original = textInput.value;
+
+            if (original === "") {
+                return alert("Please input a value");
+            }
+
+            const clean = original.toLowerCase().replace(/[^a-z0-9]/g, "");
+            const reversed = clean.split("").reverse().join("");
+
+            result.textContent = clean === reversed
+                ? `${original} is a palindrome`
+                : `${original} is not a palindrome`;
+        });
+    </script>
+</body>
+
+</html>
