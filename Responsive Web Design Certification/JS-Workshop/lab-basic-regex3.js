@@ -1,3 +1,4 @@
+//Implement a Spinal Case Converter
 function spinalCase(str){
   return str
     .replace(/([a-z])([A-Z])/g, "$1 $2")
