@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.0">
+    <title>Bookmark Manager</title>
+    <style>
+        :root {
+            --light-grey: #f5f6f7;
+            --dark-grey: #0a0a23;
+            --yellow: #f1be32;
+            --golden-yellow: #feac32;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        body {
+            background-color: var(--dark-grey);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        select,
+        input,
+        label {
+            margin-left: 10px;
+        }
+
+        div {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .close-form-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        h1,
+        h2 {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #category-list {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: var(--light-grey);
+            align-self: center;
+            width: 80%;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+
+        #category-list,
+        h1,
+        h2,
+        label {
+            color: var(--light-grey);
+        }
+
+        #category-list p {
+            color: var(--dark-grey);
+        }
+
+        button {
+            cursor: pointer;
+            padding: 5px;
+            width: 100px;
+            margin: 10px;
+            color: var(--dark-grey);
+            background-color: var(--golden-yellow);
+            background-image: linear-gradient(#fecc4c, #ffac33);
+            border-color: var(--golden-yellow);
+            border-width: 3px;
+        }
+
+        button:hover {
+            background-image: linear-gradient(#ffcc4c, #f89808);
+        }
+
+        section {
+            margin-top: 60px;
+            border: 2px solid var(--golden-yellow);
+            width: fit-content;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section id="main-section">
+            <h1>Bookmark Manager</h1>
+            <div id="dropdown">
+                <label for="category-dropdown">Select a category:</label>
+                <select id="category-dropdown" name="options">
+                    <option value="news" selected>News</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="work">Work</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+            <div id="buttons">
+                <button type="button" id="view-category-button">View Category</button>
+                <button type="button" id="add-bookmark-button">Add Bookmark</button>
+            </div>
+        </section>
+
+        <section id="form-section" class="hidden">
+            <form>
+                <h2 class="category-name"></h2>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name">
+                </div>
+                <div>
+                    <label for="url">URL:</label>
+                    <input type="text" id="url">
+                </div>
+                <div>
+                    <button type="button" id="close-form-button">Go Back</button>
+                    <button type="button" id="add-bookmark-button-form">Add Bookmark</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="bookmark-list-section" class="hidden">
+            <h2 class="category-name"></h2>
+            <div id="category-list">
+            </div>
+            <div>
+                <button type="button" id="close-list-button">Go Back</button>
+                <button type="button" id="delete-bookmark-button">Delete Bookmark</button>
+            </div>
+        </section>
+
+    </main>
+    <script>
+        //Build a Bookmark Manager App
+        const mainSection = document.getElementById("main-section")
+        const categories = document.getElementById("category-dropdown");
+        const viewCategoryBtn = document.getElementById("view-category-button");
+        const addBookmarkBtn = document.getElementById("add-bookmark-button");
+        const form = document.getElementById("form-section");
+        const nameInput = document.getElementById("name");
+        const url = document.getElementById("url");
+        const closeFormBtn = document.getElementById("close-form-button");
+        const addBookmarkBtnForm = document.getElementById("add-bookmark-button-form");
+        const bookmarkListSection = document.getElementById("bookmark-list-section");
+        const categoryList = document.getElementById("category-list");
+        const categoryName = document.querySelector(".category-name");
+        const deleteBookmarkBtn = document.getElementById("delete-bookmark-button");
+        const closeListBtn = document.getElementById("close-list-button");
+
+
+        let bookmarksArr = [];
+        function getBookmarks() {
+            try {
+                const parsedData = JSON.parse(localStorage.getItem("bookmarks"));
+
+                if (Array.isArray(parsedData)) {
+                    const isValid = parsedData.every(
+                        item => item !== null &&
+                            typeof item === "object" &&
+                            "name" in item &&
+                            "category" in item &&
+                            "url" in item
+                    );
+
+                    bookmarksArr = isValid ? parsedData : [];
+                } else {
+                    bookmarksArr = [];
+                }
+            } catch (e) {
+                bookmarksArr = [];
+            }
+
+            return bookmarksArr;
+        }
+
+        function addOrUpdateBook() {
+            getBookmarks();
+            if (!nameInput.value.trim()) {
+                alert("Please provide a name");
+                return;
+            }
+
+            const bookmarksObj = {
+                name: nameInput.value,
+                category: categories.value,
+                url: url.value,
+            }
+
+            bookmarksArr.push(bookmarksObj);
+
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarksArr));
+        }
+
+        function reset() {
+            nameInput.value = "";
+            url.value = "";
+        }
+
+        function displayOrCloseForm() {
+            form.classList.toggle("hidden");
+            mainSection.classList.toggle("hidden");
+        }
+
+        function displayOrHideCategory() {
+            mainSection.classList.toggle("hidden");
+            bookmarkListSection.classList.toggle("hidden");
+        }
+
+        addBookmarkBtn.addEventListener("click", () => {
+            categoryName.textContent = categories.value;
+            displayOrCloseForm();
+
+        });
+
+        addBookmarkBtnForm.addEventListener("click", (e) => {
+            e.preventDefault()
+            addOrUpdateBook();
+            displayOrCloseForm();
+            reset();
+        });
+
+        closeFormBtn.addEventListener("click", () => {
+            displayOrCloseForm();
+        });
+
+        viewCategoryBtn.addEventListener("click", () => {
+            categoryName.textContent = categories.value;
+
+            const books = getBookmarks().filter((item) => item.category === categories.value);
+            if (!books.length) {
+                categoryList.innerHTML = "<p>No Bookmarks Found</p>";
+            } else {
+                categoryList.innerHTML = "";
+                books.forEach(({ name, url }) => {
+                    categoryList.innerHTML += `<input type="radio" id="${name}" value="${name}" name="book">
+    <label for="${name}"><a href="${url}">${name}</a></label>`;
+                });
+            }
+
+            displayOrHideCategory();
+        });
+
+        closeListBtn.addEventListener("click", () => {
+            displayOrHideCategory();
+        });
+
+        deleteBookmarkBtn.addEventListener("click", () => {
+            const selectedRadio = document.querySelector('input[name="book"]:checked');
+            if (selectedRadio) {
+
+                bookmarksArr = getBookmarks().filter(book =>
+                    !(book.name === selectedRadio.value && book.category === categories.value)
+                );
+
+                localStorage.setItem("bookmarks", JSON.stringify(bookmarksArr));
+
+
+                selectedRadio.nextElementSibling.remove();
+                selectedRadio.remove();
+            }
+        });
+    </script>
+</body>
+
+</html>
