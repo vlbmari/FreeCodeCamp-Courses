@@ -11,3 +11,18 @@ function countdown(num){
 }
 
 console.log(countdown(10))
+
+//Build a Range of Numbers Generator
+function rangeOfNumbers(startNum, endNum) {
+  let arr = [];
+
+if (startNum === endNum) {
+    return [startNum];
+  } else {
+    arr = rangeOfNumbers(startNum, endNum - 1);
+    arr.push(endNum);
+    return arr;
+  }
+}
+
+console.log(rangeOfNumbers(6, 9))
