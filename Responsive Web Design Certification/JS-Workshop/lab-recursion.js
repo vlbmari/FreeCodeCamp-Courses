@@ -25,4 +25,22 @@ if (startNum === endNum) {
   }
 }
 
-console.log(rangeOfNumbers(6, 9))
+console.log(rangeOfNumbers(6, 9));
+
+
+//Build a Permutation Generator
+function permuteString(string, prefix = "", arr = []) {
+  if (string.length === 0 && (!arr.includes(prefix))) {
+    arr.push(prefix);
+    return arr;
+  }
+
+  for (let char of string) {
+    const stringRest = string.replace(char,"");
+    const newPrefix = prefix + char;
+    permuteString(stringRest, newPrefix, arr);
+  }
+
+  return arr;
+}
+console.log(permuteString("cat"));
