@@ -154,3 +154,32 @@ console.log(myList);
 console.log(isEmpty(myList));
 remove(myList, 42)
 console.log(JSON.stringify(myList, null, 2))
+
+
+
+//Implement a Stack
+function initStack() {
+  return { collection: [] };
+}
+
+function push(pilha, element){
+  pilha.collection.push(element)
+}
+
+function pop(pilha){
+  return pilha.collection.pop()
+}
+
+function peek(pilha){
+  return pilha.collection.length === 0 ? undefined : pilha.collection[pilha.collection.length - 1] ;
+}
+
+function isEmpty(pilha){
+  return pilha.collection.length === 0;
+}
+
+function clear(pilha){
+  pilha.collection = [];
+
+}
+
