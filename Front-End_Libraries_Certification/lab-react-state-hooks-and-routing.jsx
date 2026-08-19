@@ -203,3 +203,186 @@ button:disabled{
 }
 ______________________________________________
 */
+
+//Build an Event RSVP
+const { useState } = React;
+
+export function EventRSVPForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [attendees, setAttendees] = useState("");
+  const [dietary, setDietary] = useState("");
+  const [guests, setGuests] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  }
+
+  return (
+    <div className="form-wrap">
+      <form className="form" onSubmit={handleSubmit}>
+        <label className="column">
+          <span>Name:</span>
+          <input required type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Your Name" />
+        </label>
+        <label className="column">
+          <span>Email:</span>
+          <input required type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Your Email" />
+        </label>
+        <label className="column">
+          <span>Number of Attendees:</span>
+          <input required type="number" min="1" value={attendees} onChange={e => setAttendees(e.target.value)} placeholder="Number of Attendees" />
+        </label>
+        <label className="column">
+          <span>Dietary Preferences:</span>
+          <input type="text" placeholder="Dietary Preferences (Optional)" value={dietary} onChange={e => setDietary(e.target.value)} />
+        </label>
+        <label className="flex">
+          <span className="item">Bringing additional guests?</span>
+          <input type="checkbox" checked={guests} onChange={e => setGuests(e.target.checked)} />
+        </label>
+        <button className="submit-btn" type="submit">Submit</button>
+      </form>
+      {
+        isSubmitted &&
+        <div>
+          <h2>RSVP Submitted!</h2>
+          <p>Name: {name}</p>
+          <p>Email: {email}</p>
+          <p>Number of attendees: {attendees}</p>
+          <p>Dietary preferences: {dietary ? dietary : "None"}</p>
+          <p>Bringing additional guests: {guests ? "Yes" : "No"}</p>
+        </div>
+      }
+    </div>
+  );
+
+}
+
+/*
+-- HTML --
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event RSVP</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.development.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.development.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.5/babel.min.js"></script>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      src="index.jsx"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      data-presets="react"
+      data-type="module"
+    >
+      import { EventRSVPForm } from './index.jsx';
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        <EventRSVPForm />
+      );
+    </script>
+  </body>
+</html>
+
+
+-- CSS --
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(210deg, #4f0707 33%, #0a101b 33%);
+}
+
+.form-wrap {
+  background-color: white;
+  width: 400px;
+  padding: 20px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; 
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+
+input:not([type="checkbox"]):not([type="radio"]) {
+  padding: 10px;
+  width: 100%; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%; 
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.flex input[type="checkbox"] {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.item {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  text-align: left; 
+  line-height: 1;
+}
+
+.submit-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.4rem 0.5rem;
+
+  background-color: #07153e;
+  border-radius: 10px;
+  color: white;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: #4f0707;
+}
+______________________________________________
+*/
