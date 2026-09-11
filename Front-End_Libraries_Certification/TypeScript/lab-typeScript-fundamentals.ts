@@ -698,3 +698,285 @@ body {
 }
 
 */
+
+//Build a Product Showcase
+interface Item {
+  type: "book" | "electronics" | "clothing";
+  id: string;
+  price: number;
+}
+
+interface Book extends Item {
+  type: "book";
+  title: string;
+  author: string;
+}
+
+interface Electronics extends Item {
+  type: "electronics";
+  item: string;
+  model: string;
+  warranty?: number;
+}
+
+interface Clothing extends Item {
+  type: "clothing";
+  item: string;
+  brand: string;
+  size?: "S" | "M" | "L";
+}
+
+type Product = Book | Electronics  | Clothing
+
+class Collection<T> {
+  items: T[];
+  constructor(items: T[]){
+    this.items = items
+  }
+
+  getAll() {
+    return this.items
+  }
+
+  filter(callback: (item: T) => boolean): T[]{
+      return this.items.filter(callback)
+  }
+  
+}
+
+function renderProduct(product: Product): string {
+  let details = "";
+
+  switch (product.type) {
+    case "book":
+      details = `Book: ${product.title} by ${product.author}`;
+      break;
+
+    case "electronics":
+      details = `Electronics: ${product.item} - ${product.model}`;
+      if (product.warranty !== undefined) {
+        details += ` - Warranty: ${product.warranty} year(s)`;
+      }
+      break;
+
+    case "clothing":
+      details = `Clothing: ${product.item} by ${product.brand}`;
+      if (product.size !== undefined) {
+        details += ` - Size ${product.size}`;
+      }
+      break;
+
+    default:
+      throw new Error(`Unknown product type: ${JSON.stringify(product)}`);
+  }
+
+  return `
+    <div class="item" id="${product.id}">
+      <p class="price">${product.price}</p>
+      <p>${details}</p>
+    </div>
+  `.trim();
+}
+
+const products = new Collection<Product>([
+  {
+    id: "1",
+    type: "book",
+    price: 39.9,
+    title: "The Pragmatic Programmer",
+    author: "David Thomas, Andrew Hunt"
+  },
+  {
+    id: "2",
+    type: "electronics",
+    price: 1200,
+    item: "Monitor",
+    model: "UltraWide 29",
+    warranty: 2
+  },
+  {
+    id: "3",
+    type: "clothing",
+    price: 89.9,
+    item: "T-Shirt",
+    brand: "ComfortWear",
+    size: "M"
+  }
+]);
+
+function showProducts(filterType?: Product["type"]): void {
+  const outputElement = document.querySelector<HTMLElement>("#output");
+  if (!outputElement) return;
+
+  const productList = filterType
+    ? products.filter((p) => p.type === filterType)
+    : products.getAll();
+
+  outputElement.innerHTML = productList.map(renderProduct).join("");
+}
+
+document.querySelector("#all")?.addEventListener("click", () => showProducts());
+document.querySelector("#books")?.addEventListener("click", () => showProducts("book"));
+document.querySelector("#electronics")?.addEventListener("click", () => showProducts("electronics"));
+document.querySelector("#clothing")?.addEventListener("click", () => showProducts("clothing"));
+
+document.addEventListener("DOMContentLoaded", () => {
+  showProducts();
+});
+
+/*
+-- HTML --
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Showcase</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Product Showcase</h1>
+  <div class="buttons">
+    <button id="all">All</button>
+    <button id="books">Books</button>
+    <button id="electronics">Electronics</button>
+    <button id="clothing">Clothing</button>
+  </div>
+  <div id="output" class="product-list"></div>
+  <script src="index.ts"></script>
+</body>
+</html>
+
+-- CSS -- 
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%);
+  padding: 40px 20px;
+  margin: 0;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button.active {
+  background: #ff9800;
+  color: #1a1a1a;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+  font-weight: 600;
+}
+
+#output {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.item strong {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #0f4c75;
+  font-weight: 700;
+}
+
+.item > div:not(.price) {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.price {
+  margin-top: auto;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f4c75;
+  padding-top: 12px;
+  border-top: 2px solid #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  #output {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .item {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  #output {
+    grid-template-columns: 1fr;
+  }
+
+  button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+}
+
+*/
