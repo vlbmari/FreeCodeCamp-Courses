@@ -22,3 +22,29 @@ const numbers = [1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234,
 console.log(bubbleSort(numbers));
 
 
+//Implement the Selection Sort Algorithm
+function selectionSort(array) {
+  const arr = [...array];
+  const n = arr.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    let minIndex = i;
+
+    for (let j = i + 1; j < n; j++) {
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+
+    if (minIndex !== i) {
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
+  }
+
+  return arr;
+}
+
+const numbers2 = [1, 4, 2, 8, 345, 123, 43, 32, 5643, 63, 123, 43, 2, 55, 1, 234, 92];
+console.log(selectionSort(numbers2));
+
+
