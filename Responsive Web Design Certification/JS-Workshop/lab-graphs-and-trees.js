@@ -18,3 +18,25 @@ function adjacencyListToMatrix(adjList) {
   return matrix;
 }
 
+//Implement the Depth-First Search Algorithm
+function dfs(graph, root) {
+  const visited = [];
+  const stack = [root];
+
+  while (stack.length > 0) {
+    const current = stack.pop();
+
+    if (!visited.includes(current)) {
+      visited.push(current);
+
+      for (let neighbor = 0; neighbor < graph[current].length; neighbor++) {
+        if (graph[current][neighbor] === 1 && !visited.includes(neighbor)) {
+          stack.push(neighbor);
+        }
+      }
+    }
+  }
+
+  return visited;
+}
+
