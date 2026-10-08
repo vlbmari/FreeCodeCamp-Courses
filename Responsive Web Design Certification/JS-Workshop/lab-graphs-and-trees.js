@@ -40,3 +40,37 @@ function dfs(graph, root) {
   return visited;
 }
 
+//Implement the N-Queens Algorithm
+function dfsNQueens(n) {
+  if (n < 1) return [];
+
+  const solutions = [];
+
+  function isValid(board, row, col) {
+    for (let prevRow = 0; prevRow < row; prevRow++) {
+      const prevCol = board[prevRow];
+      if (prevCol === col || Math.abs(prevCol - col) === row - prevRow) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function dfs(row, currentBoard) {
+    if (row === n) {
+      solutions.push([...currentBoard]);
+      return;
+    }
+
+    for (let col = 0; col < n; col++) {
+      if (isValid(currentBoard, row, col)) {
+        currentBoard.push(col);
+        dfs(row + 1, currentBoard);
+        currentBoard.pop(); 
+      }
+    }
+  }
+
+  dfs(0, []);
+  return solutions;
+}
