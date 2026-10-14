@@ -100,3 +100,84 @@ const fearNotLetter = (str) => {
   return undefined;
 }
 console.log(fearNotLetter("mnoq"))
+
+
+//Build a Device Loan Ledger
+function checkoutDevice(ledger, assetTag, borrower) {
+  if (!ledger[assetTag]) {
+    return {
+      ledger,
+      message: `Asset tag ${assetTag} was not found.`
+    };
+  }
+
+  if (ledger[assetTag].status === "CheckedOut") {
+    return {
+      ledger,
+      message: `Asset tag ${assetTag} is already checked out.`
+    };
+  }
+
+  const updatedLedger = JSON.parse(JSON.stringify(ledger));
+  updatedLedger[assetTag].status = "CheckedOut";
+  updatedLedger[assetTag].borrower = {
+    name: borrower.name,
+    email: borrower.email
+  };
+
+  return {
+    ledger: updatedLedger,
+    message: `Asset tag ${assetTag} successfully checked out to ${borrower.name}.`
+  };
+}
+
+function checkinDevice(ledger, assetTag) {
+  if (!ledger[assetTag]) {
+    return {
+      ledger,
+      message: `Asset tag ${assetTag} was not found.`
+    };
+  }
+
+  const updatedLedger = JSON.parse(JSON.stringify(ledger));
+  updatedLedger[assetTag].status = "CheckedIn";
+  updatedLedger[assetTag].borrower = { name: "", email: "" };
+  updatedLedger[assetTag].dueDate = "";
+
+  return {
+    ledger: updatedLedger,
+    message: `Asset tag ${assetTag} successfully checked in.`
+  };
+}
+
+function parseDateComponents(dateStr) {
+  const [month, day, year] = dateStr.split("/").map(Number);
+  return { year, month, day };
+}
+
+function isDateBefore(dateA, dateB) {
+  const a = parseDateComponents(dateA);
+  const b = parseDateComponents(dateB);
+
+  if (a.year !== b.year) return a.year < b.year;
+  if (a.month !== b.month) return a.month < b.month;
+  return a.day < b.day;
+}
+
+function listOverdueDevices(ledger, today) {
+  return Object.values(ledger)
+    .filter(device => device.status === "CheckedOut" && device.dueDate && isDateBefore(device.dueDate, today))
+    .sort((a, b) => {
+      if (isDateBefore(a.dueDate, b.dueDate)) return -1;
+      if (isDateBefore(b.dueDate, a.dueDate)) return 1;
+      return 0;
+    });
+}
+
+function serializeLedger(ledger) {
+  return JSON.stringify(ledger);
+}
+
+function loadLedger(json) {
+  return JSON.parse(json);
+}
