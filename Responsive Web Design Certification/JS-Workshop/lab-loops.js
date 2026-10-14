@@ -181,3 +181,103 @@ function serializeLedger(ledger) {
 function loadLedger(json) {
   return JSON.parse(json);
 }
+
+//Build a Smart Pantry Restocker
+const pantry = [
+  { sku: "A10", name: "Tomatoes", qty: 4, expires: "2027-01-01", zone: "fridge" },
+  { sku: "D43", name: "Pineapples", qty: 2, expires: "2020-01-01", zone: "general" }
+];
+
+const rawData = [
+  "A10|Tomatoes|5|2027-01-01",
+  "B21|Bananas|10|2027-01-01",
+  "C32|Eggs|3|2027-01-01|fridge",
+  "C32|Eggs|3|2027-01-01",
+  "D43|Pineapples|0|2027-01-01",
+  "E54|Peppers|-1|2027-01-01|fridge"
+];
+
+function parseShipment(rawData) {
+  const seenSkus = new Set();
+  const parsedItems = [];
+
+  for (const entry of rawData) {
+    const [sku, name, qtyStr, expires, zone] = entry.split("|");
+
+    if (seenSkus.has(sku)) {
+      continue;
+    }
+    seenSkus.add(sku);
+
+    parsedItems.push({
+      sku,
+      name,
+      qty: Number(qtyStr),
+      expires,
+      zone: zone && zone.trim() !== "" ? zone : "general"
+    });
+  }
+
+  return parsedItems;
+}
+
+function planRestock(pantry, shipment) {
+  const pantrySkuSet = new Set(pantry.map(item => item.sku));
+  const actions = [];
+
+  for (const item of shipment) {
+    let type;
+
+    if (item.qty <= 0) {
+      type = "discard";
+    } else if (pantrySkuSet.has(item.sku)) {
+      type = "restock";
+    } else {
+      type = "donate";
+    }
+
+    actions.push({ type, item });
+  }
+
+  return actions;
+}
+
+
+function groupByZone(actions) {
+  const grouped = {};
+
+  for (const action of actions) {
+    const zone = action.item.zone;
+    if (!grouped[zone]) {
+      grouped[zone] = [];
+    }
+    grouped[zone].push(action);
+  }
+
+  return grouped;
+}
+
+
+function clonePantry(pantry) {
+  return pantry.map(item => ({ ...item }));
+}
+
+const initialPantry = [
+  { sku: "SKU001", name: "Olive Oil", qty: 2, expires: "2027-01-01", zone: "pantry" },
+  { sku: "SKU002", name: "Cheddar Cheese", qty: 1, expires: "2026-12-15", zone: "fridge" }
+];
+
+const sampleRawShipment = [
+  "SKU001|Olive Oil|3|2027-06-01|pantry",
+  "SKU002|Cheddar Cheese|0|2026-11-20|fridge",
+  "SKU003|Almond Milk|2|2026-12-30|fridge",
+  "SKU004|Granola Bar|5|2027-03-15",
+  "SKU001|Olive Oil Extra|1|2027-07-01|pantry" // Duplicate SKU, will be ignored
+];
+
+const pantrySnapshot = clonePantry(initialPantry);
+const parsedShipment = parseShipment(sampleRawShipment);
+const restockPlan = planRestock(pantrySnapshot, parsedShipment);
+const groupedActions = groupByZone(restockPlan);
+
+console.log(groupedActions);
