@@ -352,3 +352,63 @@ function generateTimeline(config, cycles) {
 
   return timeline;
 }
+
+//Build a Proofreading Tool
+function isPalindrome(word) {
+  if (typeof word !== 'string') return false;
+  const lower = word.toLowerCase();
+  const reversed = lower.split('').reverse().join('');
+  return lower === reversed;
+}
+
+function findPalindromeBreaks(words) {
+  if (!Array.isArray(words) || words.length === 0) {
+    return [];
+  }
+
+  const breaks = [];
+  for (let i = 0; i < words.length; i++) {
+    if (!isPalindrome(words[i])) {
+      breaks.push(i);
+    }
+  }
+  return breaks;
+}
+
+function findRepeatedPhrases(words, phraseLength) {
+  if (!Array.isArray(words) || phraseLength >= words.length || phraseLength <= 0) {
+    return [];
+  }
+
+  const phraseMap = new Map();
+
+  for (let i = 0; i <= words.length - phraseLength; i++) {
+
+    const phrase = words.slice(i, i + phraseLength).join('\u0000');
+    
+    if (!phraseMap.has(phrase)) {
+      phraseMap.set(phrase, []);
+    }
+    phraseMap.get(phrase).push(i);
+  }
+
+  const repeatedIndices = [];
+  for (const indices of phraseMap.values()) {
+    if (indices.length > 1) {
+      repeatedIndices.push(...indices);
+    }
+  }
+
+  return repeatedIndices.sort((a, b) => a - b);
+}
+
+function analyzeTexts(texts, phraseLength) {
+  if (!Array.isArray(texts) || texts.length === 0) {
+    return [];
+  }
+
+  return texts.map((words) => ({
+    repeatedPhrases: findRepeatedPhrases(words, phraseLength),
+    palindromeBreaks: findPalindromeBreaks(words)
+  }));
+}
